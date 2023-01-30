@@ -5,13 +5,13 @@ import { setTimeout } from "timers";
 export function searchLessons(req: Request, res: Response) {
   console.log("Searching for lessons ...");
 
-  const queryParams = req.query;
+  const queryParams = req.query as any;
 
   const courseId = queryParams.courseId,
     filter = queryParams.filter || "",
-    sortOrder = queryParams.sortOrder || "asc";
-  (pageNumber = parseInt(queryParams.pageNumber) || 0),
-    (pageSize = parseInt(queryParams.pageSize));
+    sortOrder = queryParams.sortOrder || "asc",
+    pageNumber = parseInt(queryParams.pageNumber) || 0,
+    pageSize = parseInt(queryParams.pageSize);
 
   let lessons = Object.values(LESSONS)
     .filter((lesson) => lesson.courseId == courseId)
