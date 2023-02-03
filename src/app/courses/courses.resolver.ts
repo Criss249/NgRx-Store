@@ -9,6 +9,7 @@ import { CoursesActions } from "./action-types";
 import { Observable } from "rxjs";
 import { tap, first, finalize, filter } from "rxjs/operators";
 import { selectAllCoursesLoaded } from "./courses.selectors";
+import { AppState } from "../reducers";
 
 @Injectable()
 
@@ -23,7 +24,7 @@ import { selectAllCoursesLoaded } from "./courses.selectors";
  */
 export class CoursesResolver implements Resolve<any> {
   loading: boolean = false;
-  constructor(private store: Store) {}
+  constructor(private store: Store<AppState>) {}
 
   // @resolve interface requires two arguments
   resolve(

@@ -26,18 +26,18 @@ export const courseAdapter = createEntityAdapter<Course>({
   sortComparer: compareCourses,
 });
 
-export const initialCourseState: CourseState = courseAdapter.getInitialState({
+export const initialCourseState = courseAdapter.getInitialState({
   allCoursesLoaded: false,
 });
 
 export const courseReducer = createReducer(
   initialCourseState,
-  on(CoursesActions.allCoursesLoaded, (state, action) => {
-    return courseAdapter.setAll(action.courses, {
+  on(CoursesActions.allCoursesLoaded, (state, action) =>
+    courseAdapter.addAll(action.courses, {
       ...state,
       allCoursesLoaded: true,
-    });
-  })
+    })
+  )
 );
 
 // export selectAll method from adapter to be used in the selectors file as a way
