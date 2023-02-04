@@ -32,11 +32,16 @@ export const initialCourseState = courseAdapter.getInitialState({
 
 export const courseReducer = createReducer(
   initialCourseState,
+  // when all courses are loaded
   on(CoursesActions.allCoursesLoaded, (state, action) =>
     courseAdapter.addAll(action.courses, {
       ...state,
       allCoursesLoaded: true,
     })
+  ),
+  //when a course is updated
+  on(CoursesActions.courseUpdated, (state, action) =>
+    courseAdapter.updateOne(action.update, state)
   )
 );
 
