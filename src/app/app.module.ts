@@ -19,7 +19,11 @@ import {environment} from '../environments/environment';
 import {RouterState, StoreRouterConnectingModule} from '@ngrx/router-store';
 
 import {EffectsModule} from '@ngrx/effects';
+<<<<<<< HEAD
 import {MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+=======
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+>>>>>>> origin/1-auth-finished
 import {metaReducers, reducers} from './reducers';
 import {AuthGuard} from './auth/auth.guard';
 import {EntityDataModule} from '@ngrx/data';
@@ -45,7 +49,11 @@ const routes: Routes = [
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
+<<<<<<< HEAD
         RouterModule.forRoot(routes, {}),
+=======
+        RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
+>>>>>>> origin/1-auth-finished
         HttpClientModule,
         MatMenuModule,
         MatIconModule,

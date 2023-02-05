@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import {  MatDialogConfig } from '@angular/material/dialog';
+=======
+import { MatDialogConfig } from '@angular/material/dialog';
+>>>>>>> origin/1-auth-finished
 
 
 export function defaultDialogConfig() {

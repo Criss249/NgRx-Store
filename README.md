@@ -3,14 +3,22 @@
 
 This repository contains the code of the video course [Ngrx (with NgRx Data) - The Complete Guide](https://angular-university.io/course/ngrx-course).
 
+<<<<<<< HEAD
 This course repository is updated to Angular v15:
+=======
+This course repository is updated to Angular v13:
+>>>>>>> origin/1-auth-finished
 
 ![Ngrx (with NgRx Data) - The Complete Guide](https://angular-university.s3-us-west-1.amazonaws.com/course-images/ngrx-v2.png)
 
 
 # Installation pre-requisites
 
+<<<<<<< HEAD
 For taking the course we recommend installing Node 18 Long Term Support Edition (LTE).
+=======
+For taking the course we recommend installing Node 16 Long Term Support Edition (LTE).
+>>>>>>> origin/1-auth-finished
 
 To easily switch between node versions on your machine, we recommend using a node virtual environment tool such as [nave](https://www.npmjs.com/package/nave) or [nvm-windows](https://github.com/coreybutler/nvm-windows), depending on your operating system. 
 
