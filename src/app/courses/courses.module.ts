@@ -26,20 +26,26 @@ import {
   EntityDefinitionService,
   EntityMetadataMap,
 } from "@ngrx/data";
-import { compareCourses, Course } from "./model/course";
 
-import { compareLessons, Lesson } from "./model/lesson";
-import { addListener } from "process";
 import { CourseEntityService } from "./services/course-entity.service";
+import { CourseResolver } from "./services/course.resolver";
+import { CoursesDataService } from "./services/courses-data.service";
+import { compareCourses } from "./model/course";
 
 export const coursesRoutes: Routes = [
   {
     path: "",
     component: HomeComponent,
+    resolve: {
+      courses: CourseResolver,
+    },
   },
   {
     path: ":courseUrl",
     component: CourseComponent,
+    resolve: {
+      courses: CourseResolver,
+    },
   },
 ];
 
@@ -50,7 +56,9 @@ export const coursesRoutes: Routes = [
  */
 
 const EntityMetadata: EntityMetadataMap = {
-  Course: {},
+  Course: {
+    sortComparer: compareCourses,
+  },
 };
 
 @NgModule({
@@ -86,14 +94,26 @@ const EntityMetadata: EntityMetadataMap = {
     CourseComponent,
   ],
   entryComponents: [EditCourseDialogComponent],
-  providers: [CoursesHttpService, CourseEntityService],
+  providers: [
+    CoursesHttpService,
+    CourseEntityService,
+    CourseResolver,
+    CoursesDataService,
+  ],
 })
 export class CoursesModule {
   /**
-   * @EntityDefinitionService
-   * used to register the entityDataMap
+   * @EntityDefinitionService : used to register the entityDataMap
+   * @EntityDataService : used to register custom data services
+   * @registerService defined a custom behaviour to get data from server instead of use the defaoult behaviour of NgRx Data,
+   * it register data fetched from data service in the Store's course entity
    */
-  constructor(private eds: EntityDefinitionService) {
+  constructor(
+    private eds: EntityDefinitionService,
+    private entityDataService: EntityDataService,
+    private coursesDataService: CoursesDataService
+  ) {
     eds.registerMetadataMap(EntityMetadata);
+    entityDataService.registerService("Course", coursesDataService);
   }
 }
