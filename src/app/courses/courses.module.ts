@@ -31,6 +31,7 @@ import { CourseEntityService } from "./services/course-entity.service";
 import { CourseResolver } from "./services/course.resolver";
 import { CoursesDataService } from "./services/courses-data.service";
 import { compareCourses } from "./model/course";
+import { compareLessons } from "./model/lesson";
 
 export const coursesRoutes: Routes = [
   {
@@ -58,6 +59,14 @@ export const coursesRoutes: Routes = [
 const EntityMetadata: EntityMetadataMap = {
   Course: {
     sortComparer: compareCourses,
+    entityDispatcherOptions: {
+      //optimisticUpdate in true when we dont want to wait until server
+      // return ok to update the store and the view (avoid delays from server in the UI)
+      optimisticUpdate: true,
+    },
+  },
+  Lesson: {
+    sortComparer: compareLessons,
   },
 };
 
